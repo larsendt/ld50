@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/images/title_bg.png" type="Texture" id=1]
+[ext_resource path="res://MainTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Credits.gd" type="Script" id=3]
+
+[node name="Credits" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MarginContainer"]
+margin_right = 352.0
+margin_bottom = 184.0
+theme = ExtResource( 2 )
+custom_constants/separation = 32
+
+[node name="Label" type="Label" parent="CanvasLayer2/MarginContainer/VBoxContainer"]
+margin_right = 352.0
+margin_bottom = 113.0
+text = "Game By: Raisin
+Engine: Godot
+SFX/Music: zapsplat.com
+Font: managore.itch.io/m5x7"
+align = 2
+
+[node name="HboxContainer" type="HBoxContainer" parent="CanvasLayer2/MarginContainer/VBoxContainer"]
+margin_top = 145.0
+margin_right = 352.0
+margin_bottom = 175.0
+alignment = 1
+
+[node name="BackButton" type="Button" parent="CanvasLayer2/MarginContainer/VBoxContainer/HboxContainer"]
+margin_left = 146.0
+margin_right = 206.0
+margin_bottom = 30.0
+text = "Back"
