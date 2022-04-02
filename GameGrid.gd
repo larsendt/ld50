@@ -8,13 +8,15 @@ enum Direction {
     WEST,
 }
 
+
+export var grid_size = Vector2(5, 5)
+export var item_probability = 0.25
+
 var game_grid = []
-var grid_size = Vector2(5, 5)
 var rng = RandomNumberGenerator.new()
 var starting_cell = null
 
 func _init():
-    randomize()
     self.game_grid = _init_game_grid()
     self.starting_cell = self.game_grid[0][0]
     _make_map()
@@ -95,8 +97,10 @@ func _make_map():
     while !cell_queue.empty():
         var cell = cell_queue.pop_front()
         cell["filled"] = true
-        var candidates = []
+        if rng.randf() < item_probability:
+            cell["has_item"] = true
 
+        var candidates = []
         for dir in _dirs():
             var candidate = offsetv(cell, dir)
             if candidate != null && !candidate["filled"]:
@@ -146,4 +150,4 @@ func _find_branchable_cell():
     return null
 
 func _make_empty_cell(x, y):
-    return {"x": x, "y": y, "north": false, "south": false, "east": false, "west": false, "filled": false, "came_from": Vector2.ZERO}
+    return {"x": x, "y": y, "north": false, "south": false, "east": false, "west": false, "filled": false, "came_from": Vector2.ZERO, "has_item": false}

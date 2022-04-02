@@ -11,6 +11,7 @@ var room_size = 9
 var room_border = 1
 var tile_size = 32
 var grid: GameGrid
+var item_positions = []
 
 func _ready():
     grid = GameGrid.new()
@@ -24,10 +25,26 @@ func debug_info_for_position(world_pos) -> String:
     return ("cell([color=yellow]%d,%d[/color])\nfilled([color=yellow]%s[/color])\nconnect([color=yellow]\n\tn:%s,\n\ts:%s,\n\te:%s,\n\tw:%s[/color])" % 
         [cell["x"], cell["y"], cell["filled"], cell["north"], cell["south"], cell["east"], cell["west"]])
 
+func grid_to_tile(grid_pos: Vector2) -> Vector2:
+    return grid_pos * Vector2(room_size, room_size)
+
+func tile_to_global(tile_pos: Vector2) -> Vector2:
+    return tile_pos * Vector2(tile_size, tile_size)
+
+func grid_to_globl(grid_pos: Vector2) -> Vector2:
+    return tile_to_global(grid_to_tile(grid_pos))
+
+func grid_to_room_center_tilespace(grid_pos: Vector2) -> Vector2:
+    return grid_to_tile(grid_pos) + (Vector2(room_size, room_size)/2)
+
 func update_tilemap():
     for y in range(0, grid.extents().y):
         for x in range(0, grid.extents().x):
             var cell = grid.at(x, y)
+
+            if cell["has_item"]:
+                item_positions.push_back(tile_to_global(grid_to_room_center_tilespace(Vector2(x, y))))
+
             if cell["filled"]:
                 for tx in range((x*room_size)+room_border, ((x+1)*room_size)-room_border):
                     for ty in range((y*room_size)+room_border, ((y+1)*room_size)-room_border):

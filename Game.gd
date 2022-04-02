@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var Apple = preload("res://items/Apple.tscn")
+
 export var MOVE_SPEED = 300
 export var INITIAL_COUNTDOWN_SECONDS = 10
 
@@ -10,6 +12,11 @@ onready var end_time = start_time + INITIAL_COUNTDOWN_SECONDS
 func _ready():
     find_node("TickTimer").connect("timeout", self, "_on_countdown_tick")
     _on_countdown_tick()
+
+    for item_pos in $World.item_positions:
+        var apple = Apple.instance()
+        apple.position = item_pos
+        $Items.add_child(apple)
 
 func _process(delta):
     var movement = Vector2.ZERO
@@ -32,7 +39,7 @@ func _process(delta):
 
 
 func _input(event):
-    if event is InputEventMouseButton && event.is_pressed():
+    if event is InputEventMouseButton && event.is_pressed() && event.button_index == BUTTON_LEFT:
         var pos = get_viewport().canvas_transform.affine_inverse().xform(event.position)
         var debug_info = $World.debug_info_for_position(pos)
         find_node("GridDebugLabel").bbcode_text = debug_info
