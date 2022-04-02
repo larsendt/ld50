@@ -15,7 +15,7 @@ func exit():
     get_tree().quit()
 
 func play():
-    get_tree().change_scene("res://GameScene.tscn")
+    get_tree().change_scene("res://Game.tscn")
 
 func credits():
     get_tree().change_scene("res://Credits.tscn")
