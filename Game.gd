@@ -2,7 +2,6 @@ extends Node2D
 
 onready var Apple = preload("res://items/Apple.tscn")
 
-export var MOVE_SPEED = 300
 export var INITIAL_COUNTDOWN_SECONDS = 10
 
 onready var remaining_time_label = find_node("RemainingTimeLabel")
@@ -18,20 +17,9 @@ func _ready():
         apple.position = item_pos
         $Items.add_child(apple)
 
+    $Player.position = $World.starting_position()
+
 func _process(delta):
-    var movement = Vector2.ZERO
-    if Input.is_action_pressed("move_right"):
-        movement.x = 1.0
-    elif Input.is_action_pressed("move_left"):
-        movement.x = -1.0
-
-    if Input.is_action_pressed("move_up"):
-        movement.y = -1.0
-    elif Input.is_action_pressed("move_down"):
-        movement.y = 1.0
-
-    $Camera2D.position += movement.normalized() * MOVE_SPEED * delta
-
     if Input.is_action_pressed("zoom"):
         $Camera2D.zoom = Vector2(4.0, 4.0)
     else:
