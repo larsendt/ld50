@@ -12,7 +12,7 @@ var arrow_tile_index_map = {
 
 var room_size = Vector2(15, 15)
 var room_padding = Vector2(1, 1)
-var room_margin = Vector2(3, 3)
+var room_margin = Vector2(9, 9)
 var tile_size = Vector2(32, 32)
 var grid: GameGrid
 var item_positions = []
@@ -44,7 +44,7 @@ func grid_to_global(grid_pos: Vector2) -> Vector2:
     return tile_to_global(grid_to_tile(grid_pos))
 
 func grid_to_room_center_tilespace(grid_pos: Vector2) -> Vector2:
-    return grid_to_tile(grid_pos) + (room_size/2)
+    return grid_to_tile(grid_pos) + ((room_size+room_margin+room_margin)/2)
 
 func generate_tilemaps():
     for y in range(0, grid.extents().y):
@@ -99,25 +99,25 @@ func generate_hallways(grid_pos, cell):
                 $WallTileMap.set_cell(x, y, 0)
 
     if cell["north"]:
-        var x = tile_pos.x + ((room_margin.x + room_size.x) / 2) + 1
+        var x = tile_pos.x + ((room_margin.x + room_margin.x + room_size.x) / 2)
         for y in range(tile_pos.y, tile_pos.y + room_margin.y):
             $WallTileMap.set_cell(x, y, -1)
             $RoomTileMap.set_cell(x, y, 0)
 
     if cell["south"]:
-        var x = tile_pos.x + ((room_margin.x + room_size.x) / 2) + 1
+        var x = tile_pos.x + ((room_margin.x + room_margin.x + room_size.x) / 2)
         for y in range(tile_pos.y + room_margin.y + room_size.y, tile_pos.y + (room_margin.y*2) + room_size.y):
             $WallTileMap.set_cell(x, y, -1)
             $RoomTileMap.set_cell(x, y, 0)
 
     if cell["east"]:
-        var y = tile_pos.y + ((room_margin.y + room_size.y) / 2) + 1
+        var y = tile_pos.y + ((room_margin.y + room_margin.y + room_size.y) / 2)
         for x in range(tile_pos.x + room_margin.x + room_size.x, tile_pos.x + (room_margin.x*2) + room_size.x):
             $WallTileMap.set_cell(x, y, -1)
             $RoomTileMap.set_cell(x, y, 0)
 
     if cell["west"]:
-        var y = tile_pos.y + ((room_margin.y + room_size.y) / 2) + 1
+        var y = tile_pos.y + ((room_margin.y + room_margin.y + room_size.y) / 2)
         for x in range(tile_pos.x, tile_pos.x + room_margin.x):
             $WallTileMap.set_cell(x, y, -1)
             $RoomTileMap.set_cell(x, y, 0)
