@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/debug_tile.png" type="Texture" id=2]
 [ext_resource path="res://rooms/RoomTileset.tres" type="TileSet" id=3]
 [ext_resource path="res://rooms/WallTileset.tres" type="TileSet" id=4]
+[ext_resource path="res://rooms/GrassyTileset.tres" type="TileSet" id=5]
 
 [sub_resource type="TileSet" id=1]
 0/name = "debug_tile.png 0"
@@ -31,6 +32,11 @@ format = 1
 
 [node name="WallTileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="GrassyTileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 format = 1
 

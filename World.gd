@@ -79,22 +79,28 @@ func generate_tilemaps():
 
     $RoomTileMap.update_bitmask_region(Vector2.ZERO, grid_to_tile(grid.extents() + Vector2(1.0, 1.0)))
     $WallTileMap.update_bitmask_region(Vector2.ZERO, grid_to_tile(grid.extents() + Vector2(1.0, 1.0)))
+    $GrassyTileMap.update_bitmask_region(Vector2.ZERO, grid_to_tile(grid.extents() + Vector2(1.0, 1.0)))
 
 func merge_room(grid_pos, room):
     var tile_pos = grid_to_tile(grid_pos) + room_margin
     var room_tilemap = room.find_node("RoomTileMap")
     var wall_tilemap = room.find_node("WallTileMap")
+    var grassy_tilemap = room.find_node("GrassyTileMap")
 
     for rx in range(room.ROOM_SIZE):
         for ry in range(room.ROOM_SIZE):
             var room_tile = room_tilemap.get_cell(rx, ry)
             var wall_tile = wall_tilemap.get_cell(rx, ry)
+            var grassy_tile = grassy_tilemap.get_cell(rx, ry)
 
             if room_tile != -1:
                 $RoomTileMap.set_cell(tile_pos.x+rx, tile_pos.y+ry, 0)
 
             if wall_tile != -1:
                 $WallTileMap.set_cell(tile_pos.x+rx, tile_pos.y+ry, 0)
+
+            if grassy_tile != -1:
+                $GrassyTileMap.set_cell(tile_pos.x+rx, tile_pos.y+ry, 0)
 
 func generate_hallways(grid_pos, cell):
     var tile_pos = grid_to_tile(grid_pos)
