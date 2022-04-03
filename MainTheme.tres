@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
 
 [ext_resource path="res://assets/fonts/m5x7.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/themes/ButtonStyleNormal.tres" type="StyleBox" id=2]
@@ -51,6 +51,9 @@ corner_radius_bottom_left = 3
 corner_detail = 1
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.0862745, 0.0784314, 0.0784314, 0.709804 )
+
 [resource]
 default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 0.780392, 0.811765, 0.8, 1 )
@@ -62,3 +65,4 @@ Button/styles/focus = SubResource( 5 )
 Button/styles/hover = SubResource( 3 )
 Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = SubResource( 2 )
+PanelContainer/styles/panel = SubResource( 6 )

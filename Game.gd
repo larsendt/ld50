@@ -18,6 +18,7 @@ var current_countdown_state = CountdownState.NOT_STARTED
 func _ready():
     find_node("TickTimer").connect("timeout", self, "_on_countdown_tick")
     $Ambience.connect("shake_screen", self, "_on_shake_screen")
+    find_node("VictoryPortal").connect("victory_portal_entered", self, "do_win")
     _on_countdown_tick()
     $Player.position = $World.starting_position()
     for item in $World.get_items():
@@ -51,8 +52,25 @@ func _on_item_acquired(seconds_added):
     end_time += seconds_added
     _on_countdown_tick()
 
-func do_end_game():
-    pass
+func do_game_over():
+    print("END GAME")
+    $Ambience.set_ambience(["eerie_thunder", "lots_of_thunder", "earthquake"])
+    $TickTimer.stop()
+    $EvilLaughPlayer.play()
+    $Player.dead = true
+    var end_label = find_node("EndLabel")
+    end_label.bbcode_text = "[color=red][center]DOOOOOOM[/center][/color]"
+    find_node("EndContainer").visible = true
+
+func do_win():
+    print("WIN GAME")
+    $Ambience.set_ambience(["wind"])
+    $TickTimer.stop()
+    $Player.dead = true
+    var end_label = find_node("EndLabel")
+    end_label.bbcode_text = "[color=#00FF33][center]DOOM DEFERRED[/center][/color]"
+    find_node("EndContainer").visible = true
+    remaining_time_label.bbcode_text = "[center][color=green]NICE JOB[/color][/center]"
          
 func _on_countdown_tick():
     var now = OS.get_unix_time()
@@ -60,7 +78,7 @@ func _on_countdown_tick():
 
     if total_remaining_sec <= 0:
         remaining_time_label.bbcode_text = "[center][color=red]DOOM IS HERE[/color][/center]"
-        do_end_game()
+        do_game_over()
         return
 
     var remaining_min = int((total_remaining_sec) / 60)

@@ -1,0 +1,113 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://assets/images/victory_sprite.png" type="Texture" id=1]
+[ext_resource path="res://assets/sounds/effects/zapsplat_sound_design_drone_airy_humming_room_tone_68603.mp3" type="AudioStream" id=2]
+[ext_resource path="res://rooms/VictoryPortal.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 480, 0, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 160, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 160, 160, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 160, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 480, 160, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 320, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 160, 320, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 320, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 480, 320, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 480, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 160, 480, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 480, 160, 160 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 480, 480, 160, 160 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 39.2046
+
+[node name="VictoryPortal" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 17 )
+frame = 7
+playing = true
+
+[node name="PortalAmbience" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = 10.0
+autoplay = true
+attenuation = 2.46229
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 18 )

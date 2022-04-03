@@ -9,7 +9,7 @@ enum Direction {
 }
 
 export var grid_size = Vector2(20, 20)
-export var item_probability = 0.25
+export var item_probability = 0.15
 
 var game_grid = []
 var rng = RandomNumberGenerator.new()
@@ -21,6 +21,7 @@ func _init():
     self.starting_cell = self.game_grid[0][0]
     _make_map()
     self.starting_cell["room_type"] = "starting_room"
+    self.starting_cell["has_item"] = true
 
 func at(x, y):
     return self.game_grid[y][x]
@@ -94,9 +95,11 @@ func _make_map():
     print("Starting map generation from ", starting_cell)
     var cell_queue = [starting_cell]
     var remaining_branches = 5
+    var last_cell = null
 
     while !cell_queue.empty():
         var cell = cell_queue.pop_front()
+        last_cell = cell
         cell["filled"] = true
         if rng.randf() <= item_probability:
             cell["has_item"] = true
@@ -134,6 +137,7 @@ func _make_map():
         cell[dir_key(vector_to_direction(candidate["came_from"]))] = true
         candidate[dir_key(vector_to_direction(candidate["came_from"]*-1))] = true
 
+    last_cell["room_type"] = "last_room"
     print("done making the map")
 
 func _find_branchable_cell():

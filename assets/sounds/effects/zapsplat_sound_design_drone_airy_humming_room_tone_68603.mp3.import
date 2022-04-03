@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_sound_design_drone_airy_humming_room_tone_68603.mp3-9d333d60060a0024eb2b2725e5039066.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/effects/zapsplat_sound_design_drone_airy_humming_room_tone_68603.mp3"
+dest_files=[ "res://.import/zapsplat_sound_design_drone_airy_humming_room_tone_68603.mp3-9d333d60060a0024eb2b2725e5039066.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

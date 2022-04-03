@@ -7,6 +7,7 @@ onready var Room3 = preload("res://rooms/Room3.tscn")
 onready var Room4 = preload("res://rooms/Room4.tscn")
 onready var Room5 = preload("res://rooms/Room5.tscn")
 onready var EmptyRoom = preload("res://rooms/EmptyRoom.tscn")
+onready var LastRoom = preload("res://rooms/LastRoom.tscn")
 onready var rooms = [Room0, Room1, Room2, Room3, Room4, Room5]
 onready var rng = RandomNumberGenerator.new()
 
@@ -74,6 +75,16 @@ func generate_tilemaps():
                     var room = Room0.instance()
                     room.set_cell(cell)
                     merge_room(grid_pos, room)
+
+                    var item_spawn_pos = room.get_item_spawn_pos()
+                    if item_spawn_pos != null:
+                        var global_pos = tile_to_global(grid_to_tile(grid_pos) + room_margin) + item_spawn_pos
+                        items.push_back({"world_pos": global_pos})
+                elif cell["room_type"] == "last_room":
+                    var room = LastRoom.instance()
+                    room.set_cell(cell)
+                    merge_room(grid_pos, room)
+                    $VictoryPortal.position = tile_to_global(grid_to_room_center_tilespace(grid_pos))
                 else:
                     var room = rooms[rng.randi_range(0, rooms.size()-1)].instance()
                     room.set_cell(cell)

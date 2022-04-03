@@ -2,8 +2,14 @@ extends KinematicBody2D
 
 export var MOVE_SPEED = 300
 onready var sprite = $AnimatedSprite
+var dead = false
 
 func _physics_process(delta):
+    if dead:
+        sprite.play("idle")
+        sprite.speed_scale = 1.0
+        return
+
     var movement = Vector2.ZERO
     var current_anim = "idle"
     sprite.speed_scale = 1.0
