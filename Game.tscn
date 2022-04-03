@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://assets/sounds/ambience/pm_inmotion_thunder_1.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/sounds/ambience/zapsplat_nature_thunder_rumble_isolated_74172.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sounds/effects/zapsplat_nature_thunder_crack_loud_close_002_79720.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/images/flash_sprite.png" type="Texture" id=14]
+[ext_resource path="res://Camera2D.gd" type="Script" id=15]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -28,6 +30,22 @@ remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+script = ExtResource( 15 )
+
+[node name="ShakeTween" type="Tween" parent="Camera2D"]
+
+[node name="ShakeTimer" type="Timer" parent="Camera2D"]
+one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="Camera2D"]
+wait_time = 0.25
+one_shot = true
+
+[node name="FlashSprite" type="Sprite" parent="Camera2D"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 3.99999 )
+scale = Vector2( 12.5, 7.25 )
+texture = ExtResource( 14 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

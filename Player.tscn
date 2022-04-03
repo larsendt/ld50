@@ -144,9 +144,8 @@ shape = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "idle"
-frame = 3
 playing = true
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0, 13 )
 texture = ExtResource( 3 )

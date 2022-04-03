@@ -16,6 +16,9 @@ onready var periodic_effects = {
     "near_thunder": [$NearThunderPlayer, false]
 }
 
+signal shake_screen
+signal flash_screen
+
 var all_effects = ["eerie_thunder", "wind", "earthquake", "near_thunder"]
 
 func _ready():
@@ -61,3 +64,6 @@ func _do_periodic_effect():
     var timeout = rng.randf_range(periodic_min, periodic_max)
     print("Starting effect ", current_periodic_effect_player, " in ", timeout, " seconds")
     $PeriodicEffectTimer.start(timeout)
+
+    emit_signal("shake_screen")
+    emit_signal("flash_screen")

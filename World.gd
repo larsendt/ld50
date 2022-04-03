@@ -2,6 +2,12 @@ extends Node2D
 
 onready var Room0 = preload("res://rooms/Room0.tscn")
 onready var Room1 = preload("res://rooms/Room1.tscn")
+onready var Room2 = preload("res://rooms/Room2.tscn")
+onready var Room3 = preload("res://rooms/Room3.tscn")
+onready var Room4 = preload("res://rooms/Room4.tscn")
+onready var Room5 = preload("res://rooms/Room5.tscn")
+onready var rooms = [Room0, Room1, Room2, Room3, Room4, Room5]
+onready var rng = RandomNumberGenerator.new()
 
 var arrow_tile_index_map = {
     Vector2(0, -1): Vector2(0, 0),
@@ -67,7 +73,7 @@ func generate_tilemaps():
                     room.set_cell(cell)
                     merge_room(grid_pos, room)
                 else:
-                    var room = Room1.instance()
+                    var room = rooms[rng.randi_range(0, rooms.size()-1)].instance()
                     room.set_cell(cell)
                     merge_room(grid_pos, room)
 

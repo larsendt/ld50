@@ -17,6 +17,7 @@ var current_countdown_state = CountdownState.NOT_STARTED
 
 func _ready():
     find_node("TickTimer").connect("timeout", self, "_on_countdown_tick")
+    $Ambience.connect("shake_screen", self, "_on_shake_screen")
     _on_countdown_tick()
     $Player.position = $World.starting_position()
     for item in $World.get_items():
@@ -84,5 +85,5 @@ func _on_countdown_tick():
         if current_countdown_state != CountdownState.BEGUN:
             $GongPlayer.play()
             current_countdown_state = CountdownState.BEGUN
-            $Ambience.set_ambience(["wind"])
+            $Ambience.set_ambience(["wind", "near_thunder"])
     remaining_time_label.bbcode_text = "[center]Doom comes in [color=%s]%02d:%02d[/color][/center]" % [clock_color, remaining_min, remaining_sec]
