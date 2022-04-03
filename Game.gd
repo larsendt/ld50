@@ -24,10 +24,10 @@ func _ready():
         spawn_item(item)
 
 func _process(delta):
-    if Input.is_action_pressed("zoom"):
-        $Camera2D.zoom = Vector2(4.0, 4.0)
-    else:
-        $Camera2D.zoom = Vector2(1.0, 1.0)
+    if Input.is_action_just_pressed("ui_page_up"):
+        $Camera2D.zoom *= 2.0
+    elif Input.is_action_just_pressed("ui_page_down"):
+        $Camera2D.zoom /= 2.0
 
 
 func _input(event):

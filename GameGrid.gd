@@ -9,13 +9,14 @@ enum Direction {
 }
 
 export var grid_size = Vector2(20, 20)
-export var item_probability = 1.0
+export var item_probability = 0.25
 
 var game_grid = []
 var rng = RandomNumberGenerator.new()
 var starting_cell = null
 
 func _init():
+    randomize()
     self.game_grid = _init_game_grid()
     self.starting_cell = self.game_grid[0][0]
     _make_map()
@@ -137,7 +138,7 @@ func _make_map():
 
 func _find_branchable_cell():
     # only try x times then give up
-    for _attempt in range(25):
+    for _attempt in range(100):
         var x = rng.randi_range(0, grid_size.x-1)
         var y = rng.randi_range(0, grid_size.y-1)
         var cell = at(x, y)

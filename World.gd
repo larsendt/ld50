@@ -6,6 +6,7 @@ onready var Room2 = preload("res://rooms/Room2.tscn")
 onready var Room3 = preload("res://rooms/Room3.tscn")
 onready var Room4 = preload("res://rooms/Room4.tscn")
 onready var Room5 = preload("res://rooms/Room5.tscn")
+onready var EmptyRoom = preload("res://rooms/EmptyRoom.tscn")
 onready var rooms = [Room0, Room1, Room2, Room3, Room4, Room5]
 onready var rng = RandomNumberGenerator.new()
 
@@ -24,6 +25,7 @@ var grid: GameGrid
 var items = []
 
 func _ready():
+    randomize()
     grid = GameGrid.new()
     generate_tilemaps()
 
@@ -82,6 +84,10 @@ func generate_tilemaps():
                         var global_pos = tile_to_global(grid_to_tile(grid_pos) + room_margin) + item_spawn_pos
                         items.push_back({"world_pos": global_pos})
                 generate_hallways(grid_pos, cell)
+            else:
+                var room = EmptyRoom.instance()
+                room.set_cell(cell)
+                merge_room(grid_pos, room)
 
     $RoomTileMap.update_bitmask_region(Vector2.ZERO, grid_to_tile(grid.extents() + Vector2(1.0, 1.0)))
     $WallTileMap.update_bitmask_region(Vector2.ZERO, grid_to_tile(grid.extents() + Vector2(1.0, 1.0)))

@@ -3,8 +3,8 @@ extends Node
 var fadeout_duration = 5.0
 var current_periodic_effect_player = null
 var rng = RandomNumberGenerator.new()
-var periodic_min = 5
-var periodic_max = 10
+var periodic_min = 15
+var periodic_max = 60
 
 onready var ambient_sounds = {
     "eerie_thunder": $EerieThunderAmbience,
@@ -38,6 +38,7 @@ func play(name):
         var tween = sound.find_node("Tween")
         sound.play()
         tween.interpolate_property(sound, "volume_db", -80, 0, fadeout_duration, Tween.TRANS_SINE, Tween.EASE_IN)
+        tween.start()
     elif name in periodic_effects:
         print("Ambience playing ", name)
         var timeout = rng.randf_range(periodic_min, periodic_max)
@@ -51,6 +52,7 @@ func stop(name):
         var sound = self.ambient_sounds[name]
         var tween = sound.find_node("Tween")
         tween.interpolate_property(sound, "volume_db", 0, -80, fadeout_duration, Tween.TRANS_SINE, Tween.EASE_IN)
+        tween.start()
         yield(tween, "tween_all_completed")
         sound.stop()
     elif name in periodic_effects && periodic_effects[name][1]:
