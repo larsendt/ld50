@@ -8,8 +8,8 @@ enum Direction {
     WEST,
 }
 
-export var grid_size = Vector2(11, 11)
-export var item_probability = 0.25
+export var grid_size = Vector2(1, 2)
+export var item_probability = 1.0
 
 var game_grid = []
 var rng = RandomNumberGenerator.new()
@@ -97,7 +97,7 @@ func _make_map():
     while !cell_queue.empty():
         var cell = cell_queue.pop_front()
         cell["filled"] = true
-        if rng.randf() < item_probability:
+        if rng.randf() <= item_probability:
             cell["has_item"] = true
 
         var candidates = []

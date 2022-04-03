@@ -15,11 +15,14 @@ var room_padding = Vector2(1, 1)
 var room_margin = Vector2(9, 9)
 var tile_size = Vector2(32, 32)
 var grid: GameGrid
-var item_positions = []
+var items = []
 
 func _ready():
     grid = GameGrid.new()
     generate_tilemaps()
+
+func get_items():
+    return items
 
 func starting_position() -> Vector2:
     # TODO: get this directly from the starting cell
@@ -29,13 +32,19 @@ func starting_position() -> Vector2:
 func debug_info_for_position(world_pos) -> String:
     print("Show debug at: ", world_pos)
     var tile_pos = $RoomTileMap.world_to_map(world_pos)
-    var grid_pos = (tile_pos / room_size).floor()
+    var grid_pos = tile_to_grid(tile_pos)
     var cell = grid.atv(grid_pos)
-    return ("cell([color=yellow]%d,%d[/color])\nfilled([color=yellow]%s[/color])\nconnect([color=yellow]\n\tn:%s,\n\ts:%s,\n\te:%s,\n\tw:%s[/color])" % 
-        [cell["x"], cell["y"], cell["filled"], cell["north"], cell["south"], cell["east"], cell["west"]])
+    if cell != null:
+        return ("cell([color=yellow]%d,%d[/color])\nfilled([color=yellow]%s[/color])\nconnect([color=yellow]\n\tn:%s,\n\ts:%s,\n\te:%s,\n\tw:%s[/color])" % 
+            [cell["x"], cell["y"], cell["filled"], cell["north"], cell["south"], cell["east"], cell["west"]])
+    else:
+        return "???"
 
 func grid_to_tile(grid_pos: Vector2) -> Vector2:
     return grid_pos * (room_size + (room_margin*2))
+
+func tile_to_grid(tile_pos: Vector2) -> Vector2:
+    return (tile_pos / ((room_margin*2) + room_size)).floor()
 
 func tile_to_global(tile_pos: Vector2) -> Vector2:
     return tile_pos * tile_size
@@ -61,10 +70,15 @@ func generate_tilemaps():
                     var room = Room1.instance()
                     room.set_cell(cell)
                     merge_room(grid_pos, room)
+
+                    var item_spawn_pos = room.get_item_spawn_pos()
+                    if item_spawn_pos != null:
+                        var global_pos = tile_to_global(grid_to_tile(grid_pos) + room_margin) + item_spawn_pos
+                        items.push_back({"world_pos": global_pos})
                 generate_hallways(grid_pos, cell)
 
-    $RoomTileMap.update_bitmask_region(Vector2.ZERO, grid.extents()*room_size)
-    $WallTileMap.update_bitmask_region(Vector2.ZERO, grid.extents()*room_size)
+    $RoomTileMap.update_bitmask_region(Vector2.ZERO, grid_to_tile(grid.extents() + Vector2(1.0, 1.0)))
+    $WallTileMap.update_bitmask_region(Vector2.ZERO, grid_to_tile(grid.extents() + Vector2(1.0, 1.0)))
 
 func merge_room(grid_pos, room):
     var tile_pos = grid_to_tile(grid_pos) + room_margin

@@ -2,16 +2,25 @@ extends Node2D
 
 const ROOM_SIZE = 15
 
-var Apple = preload("res://items/Apple.tscn")
+var rng = RandomNumberGenerator.new()
+var cell = null
 
 func get_player_spawn_pos():
     return find_node("PlayerSpawn").position
 
-func set_cell(cell):
-    var rng = RandomNumberGenerator.new()
+func get_item_spawn_pos():
+    var item_spawns = find_node("ItemSpawns")
+    var spawns = item_spawns.get_children()
+    if cell["has_item"] && spawns.size() > 0:
+        var spawn = spawns[rng.randi_range(0, spawns.size()-1)]
+        return spawn.position
+    else:
+        return null
+
+func set_cell(cell_):
+    self.cell = cell_
     var room_tile_map = find_node("RoomTileMap")
     var wall_tile_map = find_node("WallTileMap")
-    var item_spawns = find_node("ItemSpawns")
 
     var n = Vector2(ROOM_SIZE/2.0, 0).floor()
     if cell["north"]:
@@ -44,13 +53,3 @@ func set_cell(cell):
     else:
         room_tile_map.set_cellv(w, -1)
         wall_tile_map.set_cellv(w, 0)
-
-    var spawns = item_spawns.get_children()
-    if cell["has_item"] && spawns.size() > 0:
-        var spawn = spawns[rng.randi_range(0, spawns.size()-1)]
-        var apple = Apple.instance()
-        apple.position = spawn.position
-        $Items.add_child(apple)
-        
-    room_tile_map.update_bitmask_region(Vector2.ZERO, Vector2(ROOM_SIZE, ROOM_SIZE))
-    wall_tile_map.update_bitmask_region(Vector2.ZERO, Vector2(ROOM_SIZE, ROOM_SIZE))
