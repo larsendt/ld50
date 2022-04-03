@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_cartoon_eat_crunch_bite_sinlge_low_pitched_69529.wav-ad26ceb2b85e5b1bc80fe26e126665c2.sample"
+
+[deps]
+
+source_file="res://assets/sounds/effects/zapsplat_cartoon_eat_crunch_bite_sinlge_low_pitched_69529.wav"
+dest_files=[ "res://.import/zapsplat_cartoon_eat_crunch_bite_sinlge_low_pitched_69529.wav-ad26ceb2b85e5b1bc80fe26e126665c2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

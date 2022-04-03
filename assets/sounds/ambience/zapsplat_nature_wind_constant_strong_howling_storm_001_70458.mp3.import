@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_nature_wind_constant_strong_howling_storm_001_70458.mp3-07bca937320c29b9fdeea663166ac5c6.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ambience/zapsplat_nature_wind_constant_strong_howling_storm_001_70458.mp3"
+dest_files=[ "res://.import/zapsplat_nature_wind_constant_strong_howling_storm_001_70458.mp3-07bca937320c29b9fdeea663166ac5c6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

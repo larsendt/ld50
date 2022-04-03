@@ -1,11 +1,19 @@
 extends Node2D
 
-export var INITIAL_COUNTDOWN_SECONDS = 10
+export var INITIAL_COUNTDOWN_SECONDS = 30
 
 onready var Apple = preload("res://items/Apple.tscn")
 onready var remaining_time_label = find_node("RemainingTimeLabel")
 onready var start_time = OS.get_unix_time()
 onready var end_time = start_time + INITIAL_COUNTDOWN_SECONDS
+
+enum CountdownState {
+    NOT_STARTED
+    BEGUN,
+    HALF,
+    DIRE,
+}
+var current_countdown_state = CountdownState.NOT_STARTED
 
 func _ready():
     find_node("TickTimer").connect("timeout", self, "_on_countdown_tick")
@@ -29,10 +37,18 @@ func _input(event):
 
 func spawn_item(item):
     var world_pos = item["world_pos"]
-    print("Game spawning item at ", world_pos)
     var apple = Apple.instance()
     apple.position = world_pos + $World.position
     $Items.add_child(apple)
+    apple.connect("item_acquired", self, "_on_item_acquired")
+
+func _on_item_acquired(seconds_added):
+    $DingDelay.start()
+    yield($DingDelay, "timeout")
+    print("Item acquired, gaining time: ", seconds_added)
+    $ItemDingPlayer.play()
+    end_time += seconds_added
+    _on_countdown_tick()
 
 func do_end_game():
     pass
@@ -52,6 +68,21 @@ func _on_countdown_tick():
     var clock_color = "#00FF33"
     if total_remaining_sec <= (.2 * INITIAL_COUNTDOWN_SECONDS):
         clock_color = "red"
+        if current_countdown_state != CountdownState.DIRE:
+            $GongPlayer.play()
+            current_countdown_state = CountdownState.DIRE
+            $Ambience.set_ambience(["eerie_thunder", "earthquake", "near_thunder"])
     elif total_remaining_sec <= (.5 * INITIAL_COUNTDOWN_SECONDS):
         clock_color = "yellow"
+        if current_countdown_state != CountdownState.HALF:
+            $GongPlayer.play()
+            current_countdown_state = CountdownState.HALF
+            $Ambience.play("eerie_thunder")
+            $Ambience.set_ambience(["eerie_thunder", "near_thunder"])
+    else:
+        clock_color = "#00FF33"
+        if current_countdown_state != CountdownState.BEGUN:
+            $GongPlayer.play()
+            current_countdown_state = CountdownState.BEGUN
+            $Ambience.set_ambience(["wind"])
     remaining_time_label.bbcode_text = "[center]Doom comes in [color=%s]%02d:%02d[/color][/center]" % [clock_color, remaining_min, remaining_sec]

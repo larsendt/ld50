@@ -8,7 +8,7 @@ enum Direction {
     WEST,
 }
 
-export var grid_size = Vector2(1, 2)
+export var grid_size = Vector2(20, 20)
 export var item_probability = 1.0
 
 var game_grid = []

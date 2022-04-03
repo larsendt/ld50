@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_nature_thunder_crack_loud_close_002_79720.wav-8f814e49418149d6c64c7c150a442747.sample"
+
+[deps]
+
+source_file="res://assets/sounds/effects/zapsplat_nature_thunder_crack_loud_close_002_79720.wav"
+dest_files=[ "res://.import/zapsplat_nature_thunder_crack_loud_close_002_79720.wav-8f814e49418149d6c64c7c150a442747.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

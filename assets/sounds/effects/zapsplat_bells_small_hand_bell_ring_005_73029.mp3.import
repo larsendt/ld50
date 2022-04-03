@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_bells_small_hand_bell_ring_005_73029.mp3-e753f251788846385c939e225b3d8fd6.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/effects/zapsplat_bells_small_hand_bell_ring_005_73029.mp3"
+dest_files=[ "res://.import/zapsplat_bells_small_hand_bell_ring_005_73029.mp3-e753f251788846385c939e225b3d8fd6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

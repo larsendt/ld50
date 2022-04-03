@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/images/golden_apple.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/item_shadow.png" type="Texture" id=2]
 [ext_resource path="res://items/Apple.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/effects/zapsplat_cartoon_eat_crunch_bite_sinlge_low_pitched_69529.wav" type="AudioStream" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -39,7 +40,11 @@ texture = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 6 )
+
+[node name="EatEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )

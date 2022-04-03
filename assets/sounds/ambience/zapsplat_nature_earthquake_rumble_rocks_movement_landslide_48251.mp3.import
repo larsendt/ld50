@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_nature_earthquake_rumble_rocks_movement_landslide_48251.mp3-074a7725f1120848931f6ae4615fbda0.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ambience/zapsplat_nature_earthquake_rumble_rocks_movement_landslide_48251.mp3"
+dest_files=[ "res://.import/zapsplat_nature_earthquake_rumble_rocks_movement_landslide_48251.mp3-074a7725f1120848931f6ae4615fbda0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

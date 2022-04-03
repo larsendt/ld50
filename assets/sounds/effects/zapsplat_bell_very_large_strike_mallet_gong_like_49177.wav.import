@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_bell_very_large_strike_mallet_gong_like_49177.wav-ab219b97b2ba64634531d52203e14289.sample"
+
+[deps]
+
+source_file="res://assets/sounds/effects/zapsplat_bell_very_large_strike_mallet_gong_like_49177.wav"
+dest_files=[ "res://.import/zapsplat_bell_very_large_strike_mallet_gong_like_49177.wav-ab219b97b2ba64634531d52203e14289.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
