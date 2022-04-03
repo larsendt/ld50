@@ -8,7 +8,7 @@ enum Direction {
     WEST,
 }
 
-export var grid_size = Vector2(20, 20)
+export var grid_size = Vector2(8, 8)
 export var item_probability = 0.15
 
 var game_grid = []
@@ -94,7 +94,7 @@ func _dirs():
 func _make_map():
     print("Starting map generation from ", starting_cell)
     var cell_queue = [starting_cell]
-    var remaining_branches = 5
+    var remaining_branches = 10
     var last_cell = null
 
     while !cell_queue.empty():
@@ -142,7 +142,7 @@ func _make_map():
 
 func _find_branchable_cell():
     # only try x times then give up
-    for _attempt in range(100):
+    for _attempt in range(500):
         var x = rng.randi_range(0, grid_size.x-1)
         var y = rng.randi_range(0, grid_size.y-1)
         var cell = at(x, y)

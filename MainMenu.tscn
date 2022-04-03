@@ -37,7 +37,7 @@ custom_constants/separation = 16
 margin_right = 368.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
-text = "I Wanted Tunnels"
+text = "Find The Portal"
 align = 1
 
 [node name="SubtitleLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
