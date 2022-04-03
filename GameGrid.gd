@@ -8,8 +8,7 @@ enum Direction {
     WEST,
 }
 
-
-export var grid_size = Vector2(5, 5)
+export var grid_size = Vector2(11, 11)
 export var item_probability = 0.25
 
 var game_grid = []
@@ -20,6 +19,7 @@ func _init():
     self.game_grid = _init_game_grid()
     self.starting_cell = self.game_grid[0][0]
     _make_map()
+    self.starting_cell["room_type"] = "starting_room"
 
 func at(x, y):
     return self.game_grid[y][x]
@@ -150,4 +150,4 @@ func _find_branchable_cell():
     return null
 
 func _make_empty_cell(x, y):
-    return {"x": x, "y": y, "north": false, "south": false, "east": false, "west": false, "filled": false, "came_from": Vector2.ZERO, "has_item": false}
+    return {"x": x, "y": y, "north": false, "south": false, "east": false, "west": false, "filled": false, "came_from": Vector2.ZERO, "has_item": false, "room_type": "random"}

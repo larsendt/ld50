@@ -1,7 +1,5 @@
 extends Node2D
 
-onready var Apple = preload("res://items/Apple.tscn")
-
 export var INITIAL_COUNTDOWN_SECONDS = 10
 
 onready var remaining_time_label = find_node("RemainingTimeLabel")
@@ -11,12 +9,6 @@ onready var end_time = start_time + INITIAL_COUNTDOWN_SECONDS
 func _ready():
     find_node("TickTimer").connect("timeout", self, "_on_countdown_tick")
     _on_countdown_tick()
-
-    for item_pos in $World.item_positions:
-        var apple = Apple.instance()
-        apple.position = item_pos
-        $Items.add_child(apple)
-
     $Player.position = $World.starting_position()
 
 func _process(delta):
