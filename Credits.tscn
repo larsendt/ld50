@@ -25,23 +25,24 @@ margin_bottom = -16.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MarginContainer"]
 margin_right = 352.0
-margin_bottom = 184.0
+margin_bottom = 204.0
 theme = ExtResource( 2 )
 custom_constants/separation = 32
 
 [node name="Label" type="Label" parent="CanvasLayer2/MarginContainer/VBoxContainer"]
 margin_right = 352.0
-margin_bottom = 113.0
-text = "Game By: Dane
+margin_bottom = 142.0
+text = "Game: Dane
+Music: Rob
 Engine: Godot
-SFX/Music: zapsplat.com
+SFX: zapsplat.com
 Font: managore.itch.io/m5x7"
 align = 2
 
 [node name="HboxContainer" type="HBoxContainer" parent="CanvasLayer2/MarginContainer/VBoxContainer"]
-margin_top = 145.0
+margin_top = 174.0
 margin_right = 352.0
-margin_bottom = 175.0
+margin_bottom = 204.0
 alignment = 1
 
 [node name="BackButton" type="Button" parent="CanvasLayer2/MarginContainer/VBoxContainer/HboxContainer"]

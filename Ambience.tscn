@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/sounds/ambience/zapsplat_nature_thunder_rumble_isolated_74172.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/sounds/ambience/zapsplat_nature_earthquake_rumble_rocks_movement_landslide_48251.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/sounds/effects/zapsplat_nature_thunder_crack_loud_close_002_79720.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/ambience/pm_inmotion_thunder_1.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Ambience.gd" type="Script" id=5]
+[ext_resource path="res://assets/sounds/ambience/zapsplat_nature_wind_constant_strong_howling_dark_storm_003_70457.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/effects/main_loop_v01.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/effects/full_loop_v02.mp3" type="AudioStream" id=8]
+
+[node name="Ambience" type="Node"]
+script = ExtResource( 5 )
+
+[node name="WindAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="WindAmbience"]
+
+[node name="EarthquakeAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+
+[node name="Tween" type="Tween" parent="EarthquakeAmbience"]
+
+[node name="EerieThunderAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="Tween" type="Tween" parent="EerieThunderAmbience"]
+
+[node name="DistantThunderPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 10.0
+
+[node name="NearThunderPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+
+[node name="PeriodicEffectTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MusicLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 5.0
+
+[node name="MusicBegin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = 5.0

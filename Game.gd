@@ -56,9 +56,10 @@ func _on_item_acquired(seconds_added):
 
 func do_game_over():
     print("END GAME")
-    $Ambience.set_ambience(["eerie_thunder", "lots_of_thunder", "earthquake"])
+    $Ambience.set_ambience(["eerie_thunder"])
+    $Ambience.stop_music()
     $TickTimer.stop()
-    $EvilLaughPlayer.play()
+    $LosePlayer.play()
     $Player.dead = true
     var end_label = find_node("EndLabel")
     end_label.bbcode_text = "[color=red][center]DOOOOOOM[/center][/color]"
@@ -67,6 +68,8 @@ func do_game_over():
 func do_win():
     print("WIN GAME")
     $Ambience.set_ambience(["wind"])
+    $Ambience.stop_music()
+    $WinPlayer.play()
     $TickTimer.stop()
     $Player.dead = true
     var end_label = find_node("EndLabel")
@@ -92,7 +95,7 @@ func _on_countdown_tick():
         if current_countdown_state != CountdownState.DIRE:
             $GongPlayer.play()
             current_countdown_state = CountdownState.DIRE
-            $Ambience.set_ambience(["eerie_thunder", "earthquake", "near_thunder"])
+            $Ambience.set_ambience(["eerie_thunder", "near_thunder"])
     elif total_remaining_sec <= (.5 * INITIAL_COUNTDOWN_SECONDS):
         clock_color = "yellow"
         if current_countdown_state != CountdownState.HALF:

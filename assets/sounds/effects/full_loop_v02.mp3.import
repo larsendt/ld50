@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/full_loop_v02.mp3-29e51b506b8076d773bd2d28a8ac543e.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/effects/full_loop_v02.mp3"
+dest_files=[ "res://.import/full_loop_v02.mp3-29e51b506b8076d773bd2d28a8ac543e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

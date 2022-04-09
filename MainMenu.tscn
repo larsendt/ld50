@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://MainTheme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/m5x7Title.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/fonts/m5x7Subtitle.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/images/title_bg.png" type="Texture" id=5]
+[ext_resource path="res://assets/sounds/effects/title_loop_v01.mp3" type="AudioStream" id=6]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 1 )
@@ -72,3 +73,8 @@ margin_left = 246.0
 margin_right = 302.0
 margin_bottom = 30.0
 text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 5.0
+autoplay = true
