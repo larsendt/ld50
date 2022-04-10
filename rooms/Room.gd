@@ -23,7 +23,7 @@ func set_cell(cell_):
     var wall_tile_map = find_node("WallTileMap")
 
     var n = Vector2(ROOM_SIZE/2.0, 0).floor()
-    if cell["north"]:
+    if cell.north():
         room_tile_map.set_cellv(n, 0)
         wall_tile_map.set_cellv(n, -1)
     else:
@@ -31,7 +31,7 @@ func set_cell(cell_):
         wall_tile_map.set_cellv(n, 0)
 
     var s = Vector2(ROOM_SIZE/2.0, ROOM_SIZE-1).floor()
-    if cell["south"]:
+    if cell.south():
         room_tile_map.set_cellv(s, 0)
         wall_tile_map.set_cellv(s, -1)
     else:
@@ -39,7 +39,7 @@ func set_cell(cell_):
         wall_tile_map.set_cellv(s, 0)
 
     var e = Vector2(ROOM_SIZE-1, ROOM_SIZE/2.0).floor()
-    if cell["east"]:
+    if cell.east():
         room_tile_map.set_cellv(e, 0)
         wall_tile_map.set_cellv(e, -1)
     else:
@@ -47,7 +47,7 @@ func set_cell(cell_):
         wall_tile_map.set_cellv(e, 0)
 
     var w = Vector2(0, ROOM_SIZE/2.0).floor()
-    if cell["west"]:
+    if cell.west():
         room_tile_map.set_cellv(w, 0)
         wall_tile_map.set_cellv(w, -1)
     else:

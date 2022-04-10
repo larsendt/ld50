@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Ambience.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/sounds/effects/zapsplat_bells_small_hand_bell_ring_005_73029.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sounds/effects/zapsplat_bell_very_large_strike_mallet_gong_like_49177.wav" type="AudioStream" id=8]
+[ext_resource path="res://MiniMap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/images/flash_sprite.png" type="Texture" id=14]
 [ext_resource path="res://Camera2D.gd" type="Script" id=15]
 [ext_resource path="res://assets/sounds/effects/you_win.mp3" type="AudioStream" id=16]
@@ -104,6 +105,8 @@ custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[color=red][center]DOOM IS HERE[/center][/color]"
 text = "DOOM IS HERE"
+
+[node name="MiniMap" parent="CanvasLayer" instance=ExtResource( 9 )]
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.5

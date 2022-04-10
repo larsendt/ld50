@@ -141,25 +141,25 @@ func generate_hallways(grid_pos, cell):
             for y in range(r.position.y, r.end.y):
                 $WallTileMap.set_cell(x, y, 0)
 
-    if cell["north"]:
+    if cell.north():
         var x = tile_pos.x + ((room_margin.x + room_margin.x + room_size.x) / 2)
         for y in range(tile_pos.y, tile_pos.y + room_margin.y):
             $WallTileMap.set_cell(x, y, -1)
             $RoomTileMap.set_cell(x, y, 0)
 
-    if cell["south"]:
+    if cell.south():
         var x = tile_pos.x + ((room_margin.x + room_margin.x + room_size.x) / 2)
         for y in range(tile_pos.y + room_margin.y + room_size.y, tile_pos.y + (room_margin.y*2) + room_size.y):
             $WallTileMap.set_cell(x, y, -1)
             $RoomTileMap.set_cell(x, y, 0)
 
-    if cell["east"]:
+    if cell.east():
         var y = tile_pos.y + ((room_margin.y + room_margin.y + room_size.y) / 2)
         for x in range(tile_pos.x + room_margin.x + room_size.x, tile_pos.x + (room_margin.x*2) + room_size.x):
             $WallTileMap.set_cell(x, y, -1)
             $RoomTileMap.set_cell(x, y, 0)
 
-    if cell["west"]:
+    if cell.west():
         var y = tile_pos.y + ((room_margin.y + room_margin.y + room_size.y) / 2)
         for x in range(tile_pos.x, tile_pos.x + room_margin.x):
             $WallTileMap.set_cell(x, y, -1)
